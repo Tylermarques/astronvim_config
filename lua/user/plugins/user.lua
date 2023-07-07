@@ -1,27 +1,32 @@
 return {
   -- You can also add new plugins here as well:
+  { "lambdalisue/suda.vim" },
   {
-    "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
-    event = "InsertEnter",
-    config = function()
-      require("copilot").setup({})
-    end,
+    "linux-cultist/venv-selector.nvim",
+    opts = {
+      fd_binary_name = "fdfind",
+    },
   },
-  {
-    "zbirenbaum/copilot-cmp",
-    after = { "copilot.lua" },
-    config = function()
-      require("copilot_cmp").setup()
-    end
+  lsp = {
+    config = {
+      pyright = {
+        capabilities = (function()
+          local capabilities = vim.lsp.protocol.make_client_capabilities()
+          capabilities.textDocument.publishDiagnostics.tagSupport.valueSet = { 2 }
+          return capabilities
+        end)(),
+        settings = {
+          python = {
+            analysis = {
+              useLibraryCodeForTypes = true,
+              diagnosticSeverityOverrides = {
+                reportUnusedVariable = "warning", -- or anything
+              },
+              typeCheckingMode = "none",
+            },
+          },
+        },
+      },
+    },
   },
-  -- Add plugins, the lazy syntax
-  -- "andweeb/presence.nvim",
-  -- {
-  --   "ray-x/lsp_signature.nvim",
-  --   event = "BufRead",
-  --   config = function()
-  --     require("lsp_signature").setup()
-  --   end,
-  -- },
 }

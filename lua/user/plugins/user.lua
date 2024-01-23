@@ -7,26 +7,22 @@ return {
       fd_binary_name = "fdfind",
     },
   },
-  lsp = {
-    config = {
-      pyright = {
-        capabilities = (function()
-          local capabilities = vim.lsp.protocol.make_client_capabilities()
-          capabilities.textDocument.publishDiagnostics.tagSupport.valueSet = { 2 }
-          return capabilities
-        end)(),
-        settings = {
-          python = {
-            analysis = {
-              useLibraryCodeForTypes = true,
-              diagnosticSeverityOverrides = {
-                reportUnusedVariable = "warning", -- or anything
-              },
-              typeCheckingMode = "none",
-            },
-          },
-        },
-      },
+  {
+    dependencies = { "neovim/nvim-lspconfig", "nvim-telescope/telescope.nvim", "mfussenegger/nvim-dap-python" },
+    event = "VeryLazy", -- Optional: needed only if you want to type `:VenvSelect` without a keymapping
+    keys = {
+      -- Keymap to open VenvSelector to pick a venv.
+      { "<leader>vs", "<cmd>VenvSelect<cr>" },
+      -- Keymap to retrieve the venv from a cache (the one previously used for the same project directory).
+      { "<leader>vc", "<cmd>VenvSelectCached<cr>" },
     },
+    opts = {
+      fd_binary_name = "fd",
+    },
+  },
+  {
+    "robitx/gp.nvim",
+    config = function() require("gp").setup() end,
+    lazy = false,
   },
 }

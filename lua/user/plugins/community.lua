@@ -6,6 +6,7 @@ return {
   {
     import = "astrocommunity.pack.svelte",
   },
+  { import = "astrocommunity.markdown-and-latex.vimtex" },
 
   -- example of imporing a plugin, comment out to use it or add your own
   -- available plugins can be found at https://github.com/AstroNvim/astrocommunity

@@ -26,6 +26,12 @@ return {
     ["<leader>Lr"] = { "<cmd>GpRewrite<cr>", desc = "Rewrites the current selected text with the response" },
     -- quick save
     -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
+    ["<Tab>"] = { ":bnext<CR>" },
+    ["<S-Tab>"] = { ":bprev<CR>" },
+  },
+  v = {
+
+    ["<leader>Lr"] = { "<cmd>GpRewrite<cr>", desc = "Rewrites the current selected text with the response" },
   },
   t = {
     -- setting a mapping to false will disable it
